@@ -1,0 +1,57 @@
+﻿@page
+@model WebAppRazorPages.Pages.GradeInputModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ввод оценки студента</title>
+    <!-- Подключение Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Ввод оценки студента</h1>
+        <form method="post">
+            <div class="form-group">
+                <label for="SamoletId">Имя студента:</label>
+                <input type="text" id="SamoletName" name="SamoletName" class="form-control" value="@Model.Samolet.Name" readonly />
+                <input type="hidden" id="SamoletId" name="SamoletId" value="@Model.Samolet.Id" />
+
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.SubjectId">Выберите предмет:</label>
+                <select asp-for="@Model.SubjectId" class="form-control">
+                    <option value="">Выберите предмет</option>
+                    @foreach (var subject in Model.Subjects)
+                    {
+                        <option value="@subject.Id">@subject.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="@Model.SubjectId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="grade">Оценка:</label>
+                <input type="number" id="grade" name="grade" class="form-control" value="@Model.Grade" />
+            </div>
+            <div class="form-group">
+                <label for="date">Дата:</label>
+                <input type="date" id="date" name="date" class="form-control" value="@Model.Date.ToString("yyyy-MM-dd")" />
+            </div>
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+        </form>
+    </div>
+</body>
+</html>
+
+<script>
+    // Получение текущей даты
+    var currentDate = new Date();
+
+    // Форматирование текущей даты в формат YYYY-MM-DD
+    var formattedDate = currentDate.toISOString().split('T')[0];
+
+    // Установка значения поля даты
+    document.getElementById('date').value = formattedDate;
+</script>

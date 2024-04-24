@@ -1,0 +1,52 @@
+﻿@page
+@model WebAppRazorPages.Pages.SamoletsModel
+@{
+    ViewData["Title"] = "Samolets page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Подключение Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Дополнительные стили */
+        body {
+            padding: 20px;
+        }
+
+        .user-card {
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
+  
+</head>
+<body>
+    <div class="container">
+        <a asp-page="EditSamolet" class="btn btn-primary btn-create mb-3">Создать</a>
+        <div class="row">
+            @foreach (var Samolet in Model.Samolets)
+            {
+                <div class="col-md-3">
+                    <div class="user-card">
+                        <p><strong>ID:</strong> @Samolet.Id</p>
+                        <p><strong>Name:</strong> @Samolet.Name</p>
+                        <p><strong>Name:</strong> @Samolet.Name</p>
+                        <div class="btn-group" role="group">
+                            <a asp-page="Samolet" asp-route-id="@Samolet.Id" class="btn btn-secondary">Открыть</a>
+                            <form asp-page-handler="delete" method="post" asp-route-id="@Samolet.Id" class="delete-form">
+                                <button type="button" class="btn btn-danger delete-button">Удалить</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>
