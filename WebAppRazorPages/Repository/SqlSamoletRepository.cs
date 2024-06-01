@@ -22,7 +22,7 @@ namespace WebAppRazorPages.Repository
 
         public Samolet? GetUserById(int id)
         {
-            return _appDbContext.Samolet.Where( u => u.Id == id).Include(s => s.SubjectGrades).ThenInclude( s => s.Subject ).ToList().FirstOrDefault();
+            return _appDbContext.Samolet.Where( u => u.Id == id).Include(s => s.SubjectGrades).ToList().FirstOrDefault();
         }
 
         public List<Samolet> GetUsers()

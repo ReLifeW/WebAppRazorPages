@@ -10,7 +10,7 @@ namespace WebAppRazorPages.Model
         [Required(ErrorMessage = "Введите адрес электронной почты")]
         public string Type { get; set; }
         public string Model { get; set; }
-        public object SubjectGrades { get; internal set; }
+        public List<SubjectGrade> SubjectGrades { get; set; }
 
         public Samolet()
         {
