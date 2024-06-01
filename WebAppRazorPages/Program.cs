@@ -56,9 +56,6 @@ app.UseEndpoints(endpoints =>
 app.MapRazorPages();
 
 app.MapControllers();
-
-app.Run();
-
 using (var scope = app.Services.CreateScope())
 {
     try
@@ -72,3 +69,5 @@ using (var scope = app.Services.CreateScope())
         logger.LogError(ex, "An error occurred while seeding initial data");
     }
 }
+app.Run();
+
